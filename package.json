@@ -1,0 +1,34 @@
+{
+  "name": "moviedex-richard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "moviedex-api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node moviedex-api.js",
+    "dev": "nodemon moviedex-api.js",
+    "debugger": "ndb moviedex-api.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thinkful-ei-firefly/moviedex-richard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thinkful-ei-firefly/moviedex-richard/issues"
+  },
+  "homepage": "https://github.com/thinkful-ei-firefly/moviedex-richard#readme",
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "helmet": "^3.20.0",
+    "morgan": "^1.9.1",
+    "nbd": "^0.2.2"
+  }
+}
