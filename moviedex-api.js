@@ -8,20 +8,11 @@ const helmet = require('helmet');
 const app = express();
 
 app.use(morgan('common'));
-app.use(corrs());
 app.use(helmet());
 app.use(function validateBearerToken(req, res, next) {
     // const bearerToken = req.get('Authorization').split(' ')[1]
     const apiToken = process.env.API_TOKEN
     const authToken = req.get('Authorization')
-
-    console.log('validate bearer token middleware')
-
-    // if(bearerToken !== apiToken) {
-    //     return res
-    //             .status(400)
-    //             .json({error: 'Unauthorized request'})
-    // }
 
     if (!authToken || authToken.split(' ')[1] !== apiToken) {
         return res
@@ -33,7 +24,9 @@ app.use(function validateBearerToken(req, res, next) {
 
 const movies = require('./moveis-data-small.json');
 
-app.listen(8000, () => {
+const PORT = process.env.PORT || 8000
+
+app.listen(PORT, () => {
     console.log('Express server is listening on port 8000');
 });
 
@@ -67,4 +60,17 @@ function handleGetMovies(req, res) {
     }
 }
 
+app.use((error, req, res, next) => {
+    let response
+    if (process.env.NODE_ENV === 'production') {
+      response = { error: { message: 'server error' }}
+    } else {
+      response = { error }
+    }
+    res.status(500).json(response)
+  });
+
+app.use(cors());
+
 app.get('/movie', handleGetMovies);
+
